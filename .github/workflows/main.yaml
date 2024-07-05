@@ -224,7 +224,7 @@ jobs:
           cd extensions/vscode
           npx ovsx publish -p ${{ secrets.VSX_REGISTRY_TOKEN }} --packagePath ../../win32-x64/*.vsix ../../win32-arm64/*.vsix
 
-      # 4. Update the package.json version and push changes
+      # 4. Update the package.json version and push changes   
       - name: Update version in package.json
         run: |
           cd extensions/vscode
