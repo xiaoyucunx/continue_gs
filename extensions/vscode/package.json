@@ -1,7 +1,7 @@
 {
-  "name": "continue",
+  "name": "hanan_code",
   "icon": "media/icon.png",
-  "version": "0.8.43",
+  "version": "0.8.44",
   "repository": {
     "type": "git",
     "url": "https://github.com/continuedev/continue"
@@ -17,10 +17,10 @@
   "homepage": "https://continue.dev",
   "qna": "https://github.com/continuedev/continue/issues/new/choose",
   "license": "Apache-2.0",
-  "displayName": "Continue - Codestral, Claude, and more",
+  "displayName": "汉安",
   "pricing": "Free",
-  "description": "The leading open-source AI code assistant",
-  "publisher": "Continue",
+  "description": "汉安公司内部专用",
+  "publisher": "hanan",
   "engines": {
     "vscode": "^1.70.0",
     "node": ">=20.11.0"
