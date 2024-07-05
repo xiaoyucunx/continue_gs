@@ -185,7 +185,7 @@ jobs:
             win32-x64/*.vsix
             win32-arm64/*.vsix
           token: ${{ secrets.CI_GITHUB_TOKEN }}
-          repository: continuedev/continue
+          repository: xiaoyucunx/continue_gs
 
   publish:
     runs-on: ubuntu-latest
