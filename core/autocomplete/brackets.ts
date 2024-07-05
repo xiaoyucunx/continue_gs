@@ -1,5 +1,4 @@
 /**
- * 该函数用于自动补全输入字符串中的括号对。
  * We follow the policy of only completing bracket pairs that we started
  * But sometimes we started the pair in a previous autocomplete suggestion
  */

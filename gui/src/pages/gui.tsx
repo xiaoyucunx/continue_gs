@@ -133,11 +133,11 @@ function fallbackRender({ error, resetErrorBoundary }) {
       className="px-2"
       style={{ backgroundColor: vscBackground }}
     >
-      <p>出现问题：</p>
+      <p>Something went wrong:</p>
       <pre style={{ color: "red" }}>{error.message}</pre>
 
       <div className="text-center">
-        <Button onClick={resetErrorBoundary}>重启</Button>
+        <Button onClick={resetErrorBoundary}>Restart</Button>
       </div>
     </div>
   );
@@ -266,9 +266,10 @@ function GUI(props: GUIProps) {
           dispatch(
             setDialogMessage(
               <div className="text-center p-4">
-                👋 感谢您使用Continue。我们一直在努力改进
-                    并且喜欢听取用户的意见。如果你有兴趣发言，
-                    输入您的姓名和电子邮件。
+                👋 Thanks for using Continue. We are always trying to improve
+                and love hearing from users. If you're interested in speaking,
+                enter your name and email. We won't use this information for
+                anything other than reaching out.
                 <br />
                 <br />
                 <form
@@ -281,7 +282,7 @@ function GUI(props: GUIProps) {
                     dispatch(
                       setDialogMessage(
                         <div className="text-center p-4">
-                          谢谢! 我们很快就会联系您。
+                          Thanks! We'll be in touch soon.
                         </div>,
                       ),
                     );
@@ -314,7 +315,7 @@ function GUI(props: GUIProps) {
                     }}
                     type="submit"
                   >
-                    提交
+                    Submit
                   </button>
                 </form>
               </div>,
@@ -447,7 +448,7 @@ function GUI(props: GUIProps) {
                                 messageType: "userInput",
                                 data: {
                                   input:
-                                    "继续您的回复，准确无误：",
+                                    "Continue your response exactly where you left off:",
                                 },
                               },
                               "*",
@@ -484,7 +485,7 @@ function GUI(props: GUIProps) {
               }}
               className="mr-auto"
             >
-              新会话 ({getMetaKeyLabel()} {isJetBrains() ? "J" : "L"})
+              New Session ({getMetaKeyLabel()} {isJetBrains() ? "J" : "L"})
             </NewSessionButton>
           ) : getLastSessionId() ? (
             <NewSessionButton
@@ -494,7 +495,7 @@ function GUI(props: GUIProps) {
               className="mr-auto flex items-center gap-1"
             >
               <ArrowLeftIcon width="11px" height="11px" />
-              最后会话
+              Last Session
             </NewSessionButton>
           ) : null}
         </div>
@@ -512,7 +513,7 @@ function GUI(props: GUIProps) {
             }
           }}
         >
-          {getMetaKeyLabel()} ⌫ 取消
+          {getMetaKeyLabel()} ⌫ Cancel
         </StopButton>
       )}
     </>

@@ -13,20 +13,20 @@ const {
 const bin = path.join(__dirname, "bin");
 const out = path.join(__dirname, "out");
 const build = path.join(__dirname, "build");
-// rimrafSync(bin);
+rimrafSync(bin);
 rimrafSync(out);
 rimrafSync(build);
 rimrafSync(path.join(__dirname, "tmp"));
-// fs.mkdirSync(bin);
+fs.mkdirSync(bin);
 fs.mkdirSync(out);
 fs.mkdirSync(build);
 
 const esbuildOutputFile = "out/index.js";
 let targets = [
-  // "darwin-x64",
-  // "darwin-arm64",
-  // "linux-x64",
-  // "linux-arm64",
+  "darwin-x64",
+  "darwin-arm64",
+  "linux-x64",
+  "linux-arm64",
   "win32-x64",
 ];
 
@@ -48,10 +48,10 @@ for (let i = 2; i < process.argv.length; i++) {
 }
 
 const targetToLanceDb = {
-  // "darwin-arm64": "@lancedb/vectordb-darwin-arm64",
-  // "darwin-x64": "@lancedb/vectordb-darwin-x64",
-  // "linux-arm64": "@lancedb/vectordb-linux-arm64-gnu",
-  // "linux-x64": "@lancedb/vectordb-linux-x64-gnu",
+  "darwin-arm64": "@lancedb/vectordb-darwin-arm64",
+  "darwin-x64": "@lancedb/vectordb-darwin-x64",
+  "linux-arm64": "@lancedb/vectordb-linux-arm64-gnu",
+  "linux-x64": "@lancedb/vectordb-linux-x64-gnu",
   "win32-x64": "@lancedb/vectordb-win32-x64-msvc",
   "win32-arm64": "@lancedb/vectordb-win32-x64-msvc", // they don't have a win32-arm64 build
 };

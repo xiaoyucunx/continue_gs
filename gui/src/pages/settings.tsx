@@ -278,9 +278,9 @@ function Settings() {
               navigate("/");
             }}
           >
-            取消
+            Cancel
           </CancelButton>
-          <SaveButton onClick={submitAndLeave}>保存</SaveButton>
+          <SaveButton onClick={submitAndLeave}>Save</SaveButton>
         </div>
       </div>
     </FormProvider>

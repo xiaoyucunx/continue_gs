@@ -1,40 +1,56 @@
-# 代码库索引
-这是一个用于高效地保持代码库索引最新的小型Rust库。
-### 工作原理
-> 重要定义：_标签_ 是一个（工作区，分支，提供者ID）对，唯一标识一个索引。由于我们在索引中使用基于内容的寻址，为了效率，许多数据是共享的。
-sync_results函数的输出是4个元组列表的列表。每个元组包含一个文件路径和文件内容的哈希值。这4个列表分别是：
-1. 计算：需要新计算或更新的文件
-2. 删除：需要从索引中删除的文件
-3. 添加标签：存在于索引中但需要为新标签添加标签的文件
-4. 移除标签：存在于索引中但需要移除标签的文件
-标签有助于我们在从Meilisearch或Chroma等索引中检索结果时进行过滤。这些索引中所有项目的ID都是文件内容的哈希值（可能还包括末尾的块索引）。
-第一次，将构建代码库文件夹的Merkle树，忽略任何在.gitignore或.continueignore中的文件。找到的每个文件都将返回为需要计算并添加到索引中。
-之后，执行以下步骤：
-1. 加载先前计算的标签的Merkle树
-2. 计算代码库的当前Merkle树
-3. 使用当前时间戳更新.last_sync文件
-4. 将新树保存到磁盘
-5. 计算树的差异，告诉您哪些文件已经a）添加或b）删除
-6. 对于每个添加的文件：
-   - 如果在全局缓存中，则将其附加到 `add_label` 
-   - 否则，将其附加到 `compute` 
-7. 对于每个删除的文件：
-   - 如果在全局缓存中，但仅在此标签的rev_tags中，则将其附加到 `delete` 
-   - 如果在全局缓存中超过此标签，则将其附加到 `remove_label` 
-   - 否则，忽略。这不应该发生。
-8. 返回（compute，delete，add_label，remove_label）
-### 创建的文件
-在~/.continue/index文件夹中的磁盘上存储和更新几个文件，以跟踪索引文件：
--  `~/.continue/index/tags/<dir>/<branch>/<provider_id>/merkle_tree`  - 给定标签的代码库的最后计算的Merkle树
--  `~/.continue/index/tags/<dir>/<branch>/<provider_id>/.last_sync`  - 上次同步标签的时间
-索引缓存包含已经在一般和每个标签中计算过的哈希列表。这些始终保持同步。
-  -  `~/.continue/index/.index_cache`  - 包含全局缓存（哈希的平面文件）
-  -  `~/.continue/index/tags/<dir>/<branch>/<provider_id>/.index_cache`  - 包含特定于标签的缓存（哈希的平面文件）
-  -  `~/.continue/index/rev_tags`  - 包含哈希到当前为其建立索引的标签的映射。这是一个文件目录，其中每个文件的前缀是哈希的前2个字符。该文件是哈希到标签列表的JSON映射。
-### 文件
--  `lib.rs`  仅包含由Python绑定调用的顶层函数
--  `sync/merkle.rs`  包含Merkle树实现（用于构建和比较树）
--  `sync/mod.rs`  包含主要的同步逻辑，负责维护哪些哈希包含在哪些标签的磁盘数据库
-### 当前限制：
-- 仅处理本地文件，因此目前不适用于Continue服务器位于不同机器上的情况，例如IDE或工作区（远程SSH，WSL或为团队运行的Continue服务器）。
-- 目前不使用stat来检查文件的最近更改，而是在每次IDE重新加载时重新计算整个Merkle树。目前在Continue代码库上仅需要0.2秒，但这是我们稍后可以快速改进的一个方面。
+# Codebase Indexing
+
+This is a small Rust library for efficiently keeping a codebase index up to date.
+
+### How it works
+
+> Important definition: a _tag_ is a (workspace, branch, provider_id) pair that uniquely identifies an index. Since we use content-based addressing within the index, much of the data is shared for efficiency.
+
+The output of the sync_results function is a list of 4 lists of tuples. Each tuple contains a file path and a hash of the file contents. The 4 lists are:
+
+1. Compute: Files that need to be newly computed or updated
+2. Delete: Files that need to be deleted from the index
+3. Add label: Files that exist in the index but need to have a label added for a new tag
+4. Remove label: Files that exist in the index but need to have a label removed
+
+The labels help us filter when retrieving results from an index like Meilisearch or Chroma. All ids of the items in these indices are the hash of the file contents (possibly plus a chunk index at the end).
+
+The first time, a Merkle tree of the codebase folder is constructed, ignoring any files in .gitignore or .continueignore. Every file found will be returned as needing to be computed added to the index.
+
+Thereafter, the following steps are performed:
+
+1. Load the previously computed merkle tree for the tag
+2. Compute the current merkle tree of the codebase
+3. Update the .last_sync file with current timestamp
+4. Save the new tree to disk
+5. Compute the diff of the trees, which tells you which files have been a) added or b) removed
+6. For each file added:
+   - If in the global cache, append it to `add_label`
+   - Otherwise, append it to `compute`
+7. For each file removed:
+   - If in the global cache, but only in rev_tags for this tag, append it to `delete`
+   - If in global cache for more than this tag, append it to `remove_label`
+   - Otherwise, ignore. This should never happen.
+8. Return (compute, delete, add_label, remove_label)
+
+### Files created
+
+Several files are stored and updated on disk in the ~/.continue/index folder to keep track of indexed files:
+
+- `~/.continue/index/tags/<dir>/<branch>/<provider_id>/merkle_tree` - the last computed Merkle tree of the codebase for a given tag
+- `~/.continue/index/tags/<dir>/<branch>/<provider_id>/.last_sync` - the last time the tag was synced
+- The index cache contains a list of hashes that have already been computed both in general and per tag. These are always kept in sync.
+  - `~/.continue/index/.index_cache` - contains the global cache (flat file of hashes)
+  - `~/.continue/index/tags/<dir>/<branch>/<provider_id>/.index_cache` - contains the tag-specific cache (flat file of hashes)
+  - `~/.continue/index/rev_tags` - contains a mapping from hash to tags that the hash is currently indexed for. This is a directory of files, where each file is prefixed with the first 2 characters of the hash. The file is a JSON mapping from hash to list of tags.
+
+### Files
+
+- `lib.rs` contains just the top-level function that is called by the Python bindings
+- `sync/merkle.rs` contains the Merkle tree implementation (for building and comparing trees)
+- `sync/mod.rs` contains the main sync logic, which handles maintenance of the on-disk database of which hashes are included in which tags
+
+### Current limitations:
+
+- Only handles local files, so is not currently being used in situations where the Continue server is on a different machine from the IDE or the workspace (Remote SSH, WSL, or a Continue server being run for a team).
+- Currently not using stat to check for recent changes to files, is instaed re-calculating the entire Merkle tree on every IDE reload. This is fine for now since it only takes 0.2 seconds on the Continue codebase, but is a quick improvement we can make later.

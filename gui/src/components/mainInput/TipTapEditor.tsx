@@ -262,8 +262,8 @@ function TipTapEditor(props: TipTapEditorProps) {
       Placeholder.configure({
         placeholder: () =>
           historyLengthRef.current === 0
-            ? "询问任何内容，'/': 调用命令，'@': 添加上下文"
-            : "继续输入",
+            ? "Ask anything, '/' for slash commands, '@' to add context"
+            : "Ask a follow-up",
       }),
       Paragraph.extend({
         addKeyboardShortcuts() {

@@ -18,30 +18,30 @@ jobs:
             platform: win32
             arch: arm64
             npm_config_arch: arm
-          # - os: ubuntu-latest
-          #   platform: linux
-          #   arch: x64
-          #   npm_config_arch: x64
-          # - os: ubuntu-latest
-          #   platform: linux
-          #   arch: arm64
-          #   npm_config_arch: arm64
-          # - os: ubuntu-latest
-          #   platform: linux
-          #   arch: armhf
-          #   npm_config_arch: arm
-          # - os: ubuntu-latest
-          #   platform: alpine
-          #   arch: x64
-          #   npm_config_arch: x64
-          # - os: macos-12 # should migrate this to the newer x64 version of macos-14
-          #   platform: darwin
-          #   arch: x64
-          #   npm_config_arch: x64
-          # - os: macos-12 # same here, especially
-          #   platform: darwin
-          #   arch: arm64
-          #   npm_config_arch: arm64
+          - os: ubuntu-latest
+            platform: linux
+            arch: x64
+            npm_config_arch: x64
+          - os: ubuntu-latest
+            platform: linux
+            arch: arm64
+            npm_config_arch: arm64
+          - os: ubuntu-latest
+            platform: linux
+            arch: armhf
+            npm_config_arch: arm
+          - os: ubuntu-latest
+            platform: alpine
+            arch: x64
+            npm_config_arch: x64
+          - os: macos-12 # should migrate this to the newer x64 version of macos-14
+            platform: darwin
+            arch: x64
+            npm_config_arch: x64
+          - os: macos-12 # same here, especially
+            platform: darwin
+            arch: arm64
+            npm_config_arch: arm64
     runs-on: ${{ matrix.os }}
     steps:
       # 1. Check-out repository
@@ -91,12 +91,12 @@ jobs:
           npm ci
 
       # 2.25 Run core tests
-      # - name: Run core tests
-      #   run: |
-      #     cd core
-      #     npm run test
-      #   env:
-      #     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      - name: Run core tests
+        run: |
+          cd core
+          npm run test
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
       # 2.5. Pre package
       - name: Set var for environment info
@@ -173,12 +173,12 @@ jobs:
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
           files: |
-            # alpine-x64/*.vsix
-            # darwin-arm64/*.vsix
-            # darwin-x64/*.vsix
-            # linux-arm64/*.vsix
-            # linux-armhf/*.vsix
-            # linux-x64/*.vsix
+            alpine-x64/*.vsix
+            darwin-arm64/*.vsix
+            darwin-x64/*.vsix
+            linux-arm64/*.vsix
+            linux-armhf/*.vsix
+            linux-x64/*.vsix
             win32-x64/*.vsix
             win32-arm64/*.vsix
           token: ${{ secrets.CI_GITHUB_TOKEN }}
@@ -211,8 +211,7 @@ jobs:
       - name: Publish to VS Code Marketplace
         run: |
           cd extensions/vscode
-          npx vsce publish --pre-release --packagePath ../../win32-x64/*.vsix ../../win32-arm64/*.vsix
-          # npx vsce publish --pre-release --packagePath ../../alpine-x64/*.vsix ../../darwin-arm64/*.vsix ../../darwin-x64/*.vsix ../../linux-arm64/*.vsix ../../linux-armhf/*.vsix ../../linux-x64/*.vsix ../../win32-x64/*.vsix ../../win32-arm64/*.vsix
+          npx vsce publish --pre-release --packagePath ../../alpine-x64/*.vsix ../../darwin-arm64/*.vsix ../../darwin-x64/*.vsix ../../linux-arm64/*.vsix ../../linux-armhf/*.vsix ../../linux-x64/*.vsix ../../win32-x64/*.vsix ../../win32-arm64/*.vsix
         env:
           VSCE_PAT: ${{ secrets.VSCE_TOKEN }}
 
@@ -221,8 +220,7 @@ jobs:
         continue-on-error: true
         run: |
           cd extensions/vscode
-          npx ovsx publish --pre-release -p ${{ secrets.VSX_REGISTRY_TOKEN }} --packagePath ../../win32-x64/*.vsix ../../win32-arm64/*.vsix
-          # npx ovsx publish --pre-release -p ${{ secrets.VSX_REGISTRY_TOKEN }} --packagePath ../../alpine-x64/*.vsix ../../darwin-arm64/*.vsix ../../darwin-x64/*.vsix ../../linux-arm64/*.vsix ../../linux-armhf/*.vsix ../../linux-x64/*.vsix ../../win32-x64/*.vsix ../../win32-arm64/*.vsix
+          npx ovsx publish --pre-release -p ${{ secrets.VSX_REGISTRY_TOKEN }} --packagePath ../../alpine-x64/*.vsix ../../darwin-arm64/*.vsix ../../darwin-x64/*.vsix ../../linux-arm64/*.vsix ../../linux-armhf/*.vsix ../../linux-x64/*.vsix ../../win32-x64/*.vsix ../../win32-arm64/*.vsix
 
       # 4. Update the package.json version and push changes
       - name: Update version in package.json

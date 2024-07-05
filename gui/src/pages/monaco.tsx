@@ -96,7 +96,7 @@ const FILENAMES = [
 function MonacoPage() {
   return (
     <div>
-      <h1 className="px-4">编辑多个文件</h1>
+      <h1 className="px-4">Multi-File Edit</h1>
       {FILENAMES.map((filename) => {
         return <EditorFrame filename={filename} />;
       })}

@@ -90,124 +90,124 @@ function KeyboardShortcut(props: KeyboardShortcutProps) {
 
 const vscodeShortcuts: KeyboardShortcutProps[] = [
   {
-    "mac": "⌘ L",
-    "windows": "⌃ L",
-    "description": "选择代码 + 新会话"
+    mac: "⌘ L",
+    windows: "⌃ L",
+    description: "Select Code + New Session",
   },
   {
-    "mac": "⌘ I",
-    "windows": "⌃ I",
-    "description": "编辑突出显示的代码"
+    mac: "⌘ I",
+    windows: "⌃ I",
+    description: "Edit highlighted code",
   },
   {
-    "mac": "⌘ ⇧ L",
-    "windows": "⌃ ⇧ L",
-    "description": "选择代码"
+    mac: "⌘ ⇧ L",
+    windows: "⌃ ⇧ L",
+    description: "Select Code",
   },
   {
-    "mac": "⌘ ⇧ ⏎",
-    "windows": "⌃ ⇧ ⏎",
-    "description": "接受差异"
+    mac: "⌘ ⇧ ⏎",
+    windows: "⌃ ⇧ ⏎",
+    description: "Accept Diff",
   },
   {
-    "mac": "⌘ ⇧ ⌫",
-    "windows": "⌃ ⇧ ⌫",
-    "description": "拒绝差异"
+    mac: "⌘ ⇧ ⌫",
+    windows: "⌃ ⇧ ⌫",
+    description: "Reject Diff",
   },
   {
-    "mac": "⌥ ⌘ Y",
-    "windows": "Alt ⌃ Y",
-    "description": "接受差异中的顶部更改"
+    mac: "⌥ ⌘ Y",
+    windows: "Alt ⌃ Y",
+    description: "Accept Top Change in Diff",
   },
   {
-    "mac": "⌥ ⌘ N",
-    "windows": "Alt ⌃ N",
-    "description": "拒绝差异中的顶部更改"
+    mac: "⌥ ⌘ N",
+    windows: "Alt ⌃ N",
+    description: "Reject Top Change in Diff",
   },
   {
-    "mac": "⌥ ⌘ L",
-    "windows": "Alt ⌃ L",
-    "description": "切换继续侧边栏"
+    mac: "⌥ ⌘ L",
+    windows: "Alt ⌃ L",
+    description: "Toggle Continue Sidebar",
   },
   {
-    "mac": "⌘ ⇧ R",
-    "windows": "⌃ ⇧ R",
-    "description": "调试终端"
+    mac: "⌘ ⇧ R",
+    windows: "⌃ ⇧ R",
+    description: "Debug Terminal",
   },
   {
-    "mac": "⌘ ⌫",
-    "windows": "⌃ ⌫",
-    "description": "取消响应"
+    mac: "⌘ ⌫",
+    windows: "⌃ ⌫",
+    description: "Cancel response",
   },
   {
-    "mac": "⌘ K ⌘ M",
-    "windows": "⌃ K ⌃ M",
-    "description": "切换全屏"
+    mac: "⌘ K ⌘ M",
+    windows: "⌃ K ⌃ M",
+    description: "Toggle Full Screen",
   },
   {
-    "mac": "⌘ '",
-    "windows": "⌃ '",
-    "description": "切换所选模型"
-  }
+    mac: "⌘ '",
+    windows: "⌃ '",
+    description: "Toggle Selected Model",
+  },
 ];
 
 const jetbrainsShortcuts: KeyboardShortcutProps[] = [
   {
-    "mac": "⌘ J",
-    "windows": "⌃ J",
-    "description": "选择代码 + 新会话"
+    mac: "⌘ J",
+    windows: "⌃ J",
+    description: "Select Code + New Session",
   },
   {
-    "mac": "⌘ ⇧ J",
-    "windows": "⌃ ⇧ J",
-    "description": "选择代码"
+    mac: "⌘ ⇧ J",
+    windows: "⌃ ⇧ J",
+    description: "Select Code",
   },
   {
-    "mac": "⌘ I",
-    "windows": "⌃ I",
-    "description": "编辑突出显示的代码"
+    mac: "⌘ I",
+    windows: "⌃ I",
+    description: "Edit highlighted code",
   },
   {
-    "mac": "⌘ ⇧ I",
-    "windows": "⌃ ⇧ I",
-    "description": "切换内联编辑焦点"
+    mac: "⌘ ⇧ I",
+    windows: "⌃ ⇧ I",
+    description: "Toggle inline edit focus",
   },
   {
-    "mac": "⌘ ⇧ ⏎",
-    "windows": "⌃ ⇧ ⏎",
-    "description": "接受差异"
+    mac: "⌘ ⇧ ⏎",
+    windows: "⌃ ⇧ ⏎",
+    description: "Accept Diff",
   },
   {
-    "mac": "⌘ ⇧ ⌫",
-    "windows": "⌃ ⇧ ⌫",
-    "description": "拒绝差异"
+    mac: "⌘ ⇧ ⌫",
+    windows: "⌃ ⇧ ⌫",
+    description: "Reject Diff",
   },
   {
-    "mac": "⌥ ⇧ J",
-    "windows": "Alt ⇧ J",
-    "description": "快速输入"
+    mac: "⌥ ⇧ J",
+    windows: "Alt ⇧ J",
+    description: "Quick Input",
   },
   {
-    "mac": "⌥ ⌘ J",
-    "windows": "Alt ⌃ J",
-    "description": "切换侧边栏"
+    mac: "⌥ ⌘ J",
+    windows: "Alt ⌃ J",
+    description: "Toggle Sidebar",
   },
   {
-    "mac": "⌘ ⌫",
-    "windows": "⌃ ⌫",
-    "description": "取消响应"
+    mac: "⌘ ⌫",
+    windows: "⌃ ⌫",
+    description: "Cancel response",
   },
   {
-    "mac": "⌘ '",
-    "windows": "⌃ '",
-    "description": "切换所选模型"
-  }
+    mac: "⌘ '",
+    windows: "⌃ '",
+    description: "Toggle Selected Model",
+  },
 ];
 
 function KeyboardShortcutsDialog() {
   return (
     <div className="p-2">
-      <h3 className="my-3 mx-auto text-center">快捷键</h3>
+      <h3 className="my-3 mx-auto text-center">Keyboard Shortcuts</h3>
       <GridDiv>
         {(isJetBrains() ? jetbrainsShortcuts : vscodeShortcuts).map(
           (shortcut, i) => {
