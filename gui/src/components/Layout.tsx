@@ -222,7 +222,7 @@ const Layout = () => {
   }, [location]);
 
   const [indexingState, setIndexingState] = useState<IndexingProgressUpdate>({
-    desc: "Loading indexing config",
+    desc: "正在加载索引配置",
     progress: 0.0,
     status: "loading",
   });
@@ -281,10 +281,10 @@ const Layout = () => {
               </HeaderButtonWithText>
               <HeaderButtonWithText
                 onClick={() => {
-                  // navigate("/settings");
-                  ideMessenger.post("openConfigJson", undefined);
+                  navigate("/settings");
+                  // ideMessenger.post("openConfigJson", undefined);
                 }}
-                text="Configure Continue"
+                text="系统配置"
               >
                 <Cog6ToothIcon width="1.4em" height="1.4em" />
               </HeaderButtonWithText>

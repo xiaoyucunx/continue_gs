@@ -279,9 +279,9 @@ function ModelSelect(props: {}) {
                         showDelete={options.length > 1}
                       />
                     ))}
-                    {options.length === 0 && <i>No models found</i>}
+                    {options.length === 0 && <i>没有找到模型</i>}
                     <i className="text-xs ml-2" style={{ color: lightGray }}>
-                      {getMetaKeyLabel()}' to toggle
+                      {getMetaKeyLabel()}' 切换
                     </i>
                   </StyledListboxOptions>
                 </Transition>,
