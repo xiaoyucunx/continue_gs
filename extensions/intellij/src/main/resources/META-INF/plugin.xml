@@ -1,45 +1,45 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.continuedev.continueintellijextension</id>
+    <id>com.github.xiaoyucunx.continue_gs</id>
     <name>Continue</name>
     <vendor>continue-dev</vendor>
     <depends>com.intellij.modules.platform</depends>
     <idea-version since-build="223.0"/>
 
     <extensions defaultExtensionNs="JavaScript.JsonSchema">
-        <ProviderFactory implementation="com.github.continuedev.continueintellijextension.continue.ConfigJsonSchemaProviderFactory"/>
+        <ProviderFactory implementation="com.github.xiaoyucunx.continue_gs.continue.ConfigJsonSchemaProviderFactory"/>
     </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <editorFactoryListener implementation="com.github.continuedev.continueintellijextension.autocomplete.AutocompleteEditorListener"/>
+        <editorFactoryListener implementation="com.github.xiaoyucunx.continue_gs.autocomplete.AutocompleteEditorListener"/>
         <toolWindow id="Continue" anchor="right" icon="/tool-window-icon.svg"
-                    factoryClass="com.github.continuedev.continueintellijextension.toolWindow.ContinuePluginToolWindowFactory"/>
+                    factoryClass="com.github.xiaoyucunx.continue_gs.toolWindow.ContinuePluginToolWindowFactory"/>
         <projectService id="ContinuePluginService"
-                        serviceImplementation="com.github.continuedev.continueintellijextension.services.ContinuePluginService"/>
+                        serviceImplementation="com.github.xiaoyucunx.continue_gs.services.ContinuePluginService"/>
         <projectService
                 id="DiffStreamService"
-                serviceImplementation="com.github.continuedev.continueintellijextension.editor.DiffStreamService"/>
+                serviceImplementation="com.github.xiaoyucunx.continue_gs.editor.DiffStreamService"/>
         <projectService
                 id="AutocompleteLookupListener"
-                serviceImplementation="com.github.continuedev.continueintellijextension.autocomplete.AutocompleteLookupListener"/>
+                serviceImplementation="com.github.xiaoyucunx.continue_gs.autocomplete.AutocompleteLookupListener"/>
     </extensions>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
         <postStartupActivity
-                implementation="com.github.continuedev.continueintellijextension.activities.ContinuePluginStartupActivity"/>
+                implementation="com.github.xiaoyucunx.continue_gs.activities.ContinuePluginStartupActivity"/>
         <applicationConfigurable
                 parentId="tools"
-                instance="com.github.continuedev.continueintellijextension.services.ContinueExtensionConfigurable"
-                id="com.github.continuedev.continueintellijextension.services.ContinueExtensionConfigurable"
+                instance="com.github.xiaoyucunx.continue_gs.services.ContinueExtensionConfigurable"
+                id="com.github.xiaoyucunx.continue_gs.services.ContinueExtensionConfigurable"
                 displayName="Continue"/>
         <applicationService
-                serviceImplementation="com.github.continuedev.continueintellijextension.services.ContinueExtensionSettings"/>
+                serviceImplementation="com.github.xiaoyucunx.continue_gs.services.ContinueExtensionSettings"/>
     </extensions>
 
     <actions>
-        <action class="com.github.continuedev.continueintellijextension.editor.InlineEditAction"
+        <action class="com.github.xiaoyucunx.continue_gs.editor.InlineEditAction"
                 id="continue.inlineEdit"
                 description="Inline Edit"
                 text="Inline Edit">
@@ -49,7 +49,7 @@
                                first-keystroke="meta I"/>
         </action>
 
-        <action class="com.github.continuedev.continueintellijextension.editor.ToggleInlineEditAction"
+        <action class="com.github.xiaoyucunx.continue_gs.editor.ToggleInlineEditAction"
                 id="continue.toggleInlineEdit"
                 description="Toggle Inline Edit"
                 text="Toggle Inline Edit">
@@ -60,7 +60,7 @@
         </action>
 
         <action id="continue.acceptDiff"
-                class="com.github.continuedev.continueintellijextension.actions.AcceptDiffAction"
+                class="com.github.xiaoyucunx.continue_gs.actions.AcceptDiffAction"
                 text="Accept Diff" description="Accept Diff">
             <keyboard-shortcut keymap="$default"
                                first-keystroke="alt shift Y"/>
@@ -68,7 +68,7 @@
                                first-keystroke="alt shift Y"/>
         </action>
         <action id="continue.rejectDiff"
-                class="com.github.continuedev.continueintellijextension.actions.RejectDiffAction"
+                class="com.github.xiaoyucunx.continue_gs.actions.RejectDiffAction"
                 text="Reject Diff" description="Reject Diff">
             <keyboard-shortcut keymap="$default"
                                first-keystroke="alt shift N"/>
@@ -76,7 +76,7 @@
                                first-keystroke="alt shift N"/>
         </action>
         <action id="continue.quickTextEntry"
-                class="com.github.continuedev.continueintellijextension.actions.QuickTextEntryAction"
+                class="com.github.xiaoyucunx.continue_gs.actions.QuickTextEntryAction"
                 text="Quick Text Entry" description="Quick Text Entry">
             <keyboard-shortcut keymap="$default"
                                first-keystroke="alt shift J"/>
@@ -84,19 +84,19 @@
                                first-keystroke="alt shift J"/>
         </action>
         <action id="continue.viewLogs"
-                class="com.github.continuedev.continueintellijextension.actions.ViewLogsAction"
+                class="com.github.xiaoyucunx.continue_gs.actions.ViewLogsAction"
                 text="View Continue Server Logs"
                 description="View Continue Server Logs">
             <!-- No shortcut defined -->
         </action>
         <action id="continue.toggleAuxiliaryBar"
-                class="com.github.continuedev.continueintellijextension.actions.ToggleAuxiliaryBarAction"
+                class="com.github.xiaoyucunx.continue_gs.actions.ToggleAuxiliaryBarAction"
                 text="Toggle Right Sidebar" description="Toggle Right Sidebar">
             <keyboard-shortcut keymap="$default" first-keystroke="alt ctrl J"/>
             <keyboard-shortcut keymap="Mac OS X" first-keystroke="alt meta J"/>
         </action>
         <action id="continue.focusContinueInputWithoutClear"
-                class="com.github.continuedev.continueintellijextension.actions.FocusContinueInputWithoutClearAction"
+                class="com.github.xiaoyucunx.continue_gs.actions.FocusContinueInputWithoutClearAction"
                 text="Add selected code to context"
                 description="Focus Continue Input With Edit">
             <keyboard-shortcut keymap="$default"
@@ -109,7 +109,7 @@
 <!--        <action id="SurroundWithLiveTemplate" class="com.intellij.openapi.actionSystem.EmptyAction"/>-->
 
         <action id="continue.newContinueSession"
-                class="com.github.continuedev.continueintellijextension.actions.NewContinueSessionAction"
+                class="com.github.xiaoyucunx.continue_gs.actions.NewContinueSessionAction"
                 text="Start New Continue Session"
                 icon="AllIcons.General.Add"
                 description="Start New Continue Session">
@@ -120,13 +120,13 @@
         </action>
 
         <action id="continue.viewHistory"
-                class="com.github.continuedev.continueintellijextension.actions.ViewHistoryAction"
+                class="com.github.xiaoyucunx.continue_gs.actions.ViewHistoryAction"
                 text="View History"
                 icon="AllIcons.Vcs.History"
                 description="View History">
         </action>
         <action id="continue.focusContinueInput"
-                class="com.github.continuedev.continueintellijextension.actions.FocusContinueInputAction"
+                class="com.github.xiaoyucunx.continue_gs.actions.FocusContinueInputAction"
                 text="Add selected code to context"
                 description="Focus Continue Input">
             <keyboard-shortcut keymap="$default"
@@ -141,14 +141,14 @@
             <reference ref="continue.viewHistory"/>
         </group>
 
-        <action id="com.github.continuedev.continueintellijextension.autocomplete.AcceptAutocompleteAction"
-                class="com.github.continuedev.continueintellijextension.autocomplete.AcceptAutocompleteAction"
+        <action id="com.github.xiaoyucunx.continue_gs.autocomplete.AcceptAutocompleteAction"
+                class="com.github.xiaoyucunx.continue_gs.autocomplete.AcceptAutocompleteAction"
                 text="Accept Autocomplete Suggestion" description="Accept Autocomplete Suggestion">
             <keyboard-shortcut keymap="$default" first-keystroke="TAB"/>
             <keyboard-shortcut keymap="Mac OS X" first-keystroke="TAB"/>
         </action>
-        <action id="com.github.continuedev.continueintellijextension.autocomplete.CancelAutocompleteAction"
-                class="com.github.continuedev.continueintellijextension.autocomplete.CancelAutocompleteAction"
+        <action id="com.github.xiaoyucunx.continue_gs.autocomplete.CancelAutocompleteAction"
+                class="com.github.xiaoyucunx.continue_gs.autocomplete.CancelAutocompleteAction"
                 text="Cancel Autocomplete Suggestion" description="Cancel Autocomplete Suggestion">
             <keyboard-shortcut keymap="$default" first-keystroke="ESCAPE"/>
         </action>
